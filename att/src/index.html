@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor Ambiental</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; }
+        .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        input { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h3>Enviar Leitura do Sensor</h3>
+        <input type="text" id="sensor" placeholder="Tipo de Sensor (ex: Água, Ar)">
+        <input type="number" id="valor" placeholder="Valor da leitura">
+        <button onclick="enviarDados()">Enviar para Estação</button>
+    </div>
+
+    <h3>Histórico de Monitoramento</h3>
+    <button style="background: #007bff;" onclick="atualizarTabela()">Atualizar Lista</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Sensor</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-corpo"></tbody>
+    </table>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+
+        async function enviarDados() {
+            const sensor = document.getElementById('sensor').value;
+            const valor = document.getElementById('valor').value;
+
+            await fetch(`${API_URL}/coleta`, {
+                method: 'POST',
+                body: JSON.stringify({ sensor, valor })
+            });
+
+            alert('Dados enviados!');
+            atualizarTabela();
+        }
+
+        async function atualizarTabela() {
+            const response = await fetch(`${API_URL}/historico`);
+            const dados = await response.json();
+            const corpo = document.getElementById('tabela-corpo');
+            
+            corpo.innerHTML = dados.map(item => `
+                <tr>
+                    <td>${new Date(item.data).toLocaleString()}</td>
+                    <td>${item.sensor}</td>
+                    <td>${item.valor}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Carrega ao iniciar
+        atualizarTabela();
+    </script>
+</body>
+</html>
