@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desenvolvedor</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0f172a;
+  color:#e2e8f0;
+}
+
+header{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(135deg,#1e293b,#0f172a);
+  padding:20px;
+}
+
+header h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+header p{
+  font-size:1.2rem;
+  color:#94a3b8;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 24px;
+  border:none;
+  background:#38bdf8;
+  color:#0f172a;
+  font-weight:bold;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#0ea5e9;
+}
+
+section{
+  padding:60px 20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:30px;
+  font-size:2rem;
+}
+
+.skills,.softskills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  justify-content:center;
+}
+
+.card{
+  background:#1e293b;
+  padding:20px 30px;
+  border-radius:10px;
+  transition:0.3s;
+  font-weight:bold;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  background:#334155;
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.project{
+  background:#1e293b;
+  padding:20px;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.project:hover{
+  background:#334155;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#020617;
+  color:#64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Desenvolvedor</h1>
+<p>Construindo soluções modernas e eficientes</p>
+<button onclick="scrollToSection('skills')">Ver habilidades</button>
+</header>
+
+<section id="skills">
+<h2>Habilidades Técnicas</h2>
+<div class="skills">
+<div class="card">C</div>
+<div class="card">Python</div>
+<div class="card">Java</div>
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+</div>
+</section>
+
+<section>
+<h2>Soft Skills</h2>
+<div class="softskills">
+<div class="card">Trabalho em equipe</div>
+<div class="card">Criatividade</div>
+<div class="card">Comunicação</div>
+<div class="card">Resolução de problemas</div>
+<div class="card">Adaptabilidade</div>
+<div class="card">Pensamento crítico</div>
+</div>
+</section>
+
+<section>
+<h2>Projetos</h2>
+<div class="projects">
+<div class="project">
+<h3>Projeto 1</h3>
+<p>Solução web moderna focada em desempenho e usabilidade.</p>
+</div>
+<div class="project">
+<h3>Projeto 2</h3>
+<p>Aplicação interativa com foco em experiência do usuário.</p>
+</div>
+<div class="project">
+<h3>Projeto 3</h3>
+<p>Projeto voltado para organização e eficiência de dados.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<p>©️ 2026 Desenvolvedor</p>
+</footer>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'})
+}
+</script>
+
+</body>
+</html>
